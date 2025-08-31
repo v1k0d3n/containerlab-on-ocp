@@ -110,7 +110,7 @@ make destroy-all LAB=demo-cl-frr-01
 #### **demo-cl-sonic-01: Spine-Leaf Lab**
 - **Purpose**: Traditional data center network architecture
 - **Architecture**: 2x spine + 2x leaf + 2x host topology
-- **Use Case**: Enterprise networking, high-availability design, BGP EVPN
+- **Use Case**: Learn enterprise switching, high-availability design, BGP EVPN (future work)
 
 ## **Makefile Features**
 
