@@ -100,14 +100,14 @@ make destroy-lab LAB=demo-cl-frr-01
 make destroy-all LAB=demo-cl-frr-01
 ```
 
-### **Available Labs**
+### **Included Sample Labs**
 
-#### **demo-cl-frr-01: FRR BGP Lab**
+#### **[demo-cl-frr-01](./labs/demo-cl-frr-01/): FRR BGP Routing Lab**
 - **Purpose**: Simple BGP peering between two routers
 - **Architecture**: Point-to-point BGP with route advertisement
 - **Use Case**: Learning BGP fundamentals, testing route propagation
 
-#### **demo-cl-sonic-01: Spine-Leaf Lab**
+#### **[demo-cl-sonic-01](./labs/demo-cl-sonic-01/): Spine-Leaf Switching Lab**
 - **Purpose**: Traditional data center network architecture
 - **Architecture**: 2x spine + 2x leaf + 2x host topology
 - **Use Case**: Learn enterprise switching, high-availability design, BGP EVPN (future work)
