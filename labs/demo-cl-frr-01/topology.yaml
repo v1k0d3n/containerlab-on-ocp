@@ -1,0 +1,35 @@
+apiVersion: clabernetes.containerlab.dev/v1alpha1
+kind: Topology
+metadata:
+  name: frr-bgp-demo
+  namespace: demo-cl-frr-01
+  labels:
+    app.kubernetes.io/name: frr-bgp-demo
+    app.kubernetes.io/instance: demo-cl-frr-01
+spec:
+  definition:
+    containerlab: |
+      name: frr-bgp-demo
+      topology:
+        nodes:
+          frr1:
+            kind: linux
+            image: frrouting/frr:latest
+            cmd: bash -c "echo 'vtysh_enable=yes' > /etc/frr/vtysh.conf; /usr/lib/frr/frrinit.sh start; /usr/lib/frr/watchfrr.sh start bgpd; while true; do ip addr add 10.0.0.1/24 dev eth1 2>/dev/null || true; ip addr add 10.35.1.1/24 dev lo 2>/dev/null || true; sleep 30; done"
+            k8s:
+              annotations:
+                k8s.v1.cni.cncf.io/networks: |
+                  [{"name":"vlan3","namespace":"default"}]
+            mgmt_ipv4: 192.168.1.1
+          frr2:
+            kind: linux
+            image: frrouting/frr:latest
+            cmd: bash -c "echo 'vtysh_enable=yes' > /etc/frr/vtysh.conf; /usr/lib/frr/frrinit.sh start; /usr/lib/frr/watchfrr.sh start bgpd; while true; do ip addr add 10.0.0.2/24 dev eth1 2>/dev/null || true; ip addr add 10.35.2.1/24 dev lo 2>/dev/null || true; sleep 30; done"
+            k8s:
+              annotations:
+                k8s.v1.cni.cncf.io/networks: |
+                  [{"name":"vlan3","namespace":"default"}]
+            mgmt_ipv4: 192.168.2.1
+        links:
+          - endpoints: ["frr1:eth1", "frr2:eth1"]
+            mtu: 1500

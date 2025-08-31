@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clabernetes-manager
+  annotations:
+    service.alpha.openshift.io/serving-cert-secret-name: clabernetes-manager-webhook-tls
+  labels:
+    app.kubernetes.io/name: clabernetes-manager
+    clabernetes/app: clabernetes
+    clabernetes/component: manager
+    clabernetes/name: clabernetes-manager
+spec:
+  selector:
+    clabernetes/app: clabernetes
+    clabernetes/component: manager
+    release: clabernetes
+  ports:
+    - name: https
+      port: 10443
+      targetPort: 10443
+      protocol: TCP

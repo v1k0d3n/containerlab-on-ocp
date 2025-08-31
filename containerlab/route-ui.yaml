@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: clabernetes-ui
+spec:
+  to:
+    kind: Service
+    name: clabernetes-ui-http
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
