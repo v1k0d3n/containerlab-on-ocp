@@ -8,7 +8,6 @@ A **modular, production-ready** demonstration of running Containerlab network to
 containerlab-on-ocp/
 ├── Makefile                    # Centralized automation & configuration
 ├── README.md                   # Project documentation (this file)
-├── tips.md                     # Helpful tips and tricks
 ├── containerlab/               # OpenShift-specific Containerlab/clabernetes configs
 │   ├── kustomization.yaml      # Kustomize configuration
 │   ├── config.yaml             # ConfigMap for host UI
