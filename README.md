@@ -1,6 +1,6 @@
 # Containerlab/Clabernetes on OpenShift
 
-A **modular, production-ready** demonstration of running Containerlab network topologies on OpenShift using Containerlab (Clabernetes). This project showcases enterprise networking architectures in a Kubernetes-native environment.
+A simple, modular demonstration of running Containerlab network topologies on OpenShift using Containerlab (Clabernetes). This project showcases enterprise networking architectures in a Kubernetes-native environment.
 
 ## **Project Architecture**
 
@@ -141,7 +141,7 @@ make destroy-all LAB=name    # Remove everything
 - **Lab-Specific Settings**: Each lab can have custom configurations
 - **Consistent Naming**: Standardized variable names across all labs
 
-## **Production Features**
+## **Features**
 
 ### **Security & Compliance**
 - **OpenShift SCCs**: Proper security context constraints
@@ -248,7 +248,7 @@ oc logs -n demo-cl-frr-01 <pod-name>
 ### **Industry Relevance**
 - **Modern Networking**: Uses current industry-standard tools and protocols
 - **Cloud Native**: Designed for Kubernetes/OpenShift environments
-- **Enterprise Ready**: Production-grade architectures and configurations
+- **Enterprise Testing**: Test various architectures and configurations before going to production
 - **Open Source**: Built with widely-adopted open source components
 
 ### **Technical Excellence**
