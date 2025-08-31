@@ -1,6 +1,6 @@
 # Containerlab/Clabernetes on OpenShift
 
-A simple, modular demonstration of running Containerlab network topologies on OpenShift using Containerlab (Clabernetes). This project showcases enterprise networking architectures in a Kubernetes-native environment.
+A simple, modular demonstration of running Containerlab network topologies on OpenShift using Clabernetes. This project showcases enterprise networking architectures in a Kubernetes-native environment.
 
 ## **Project Architecture**
 
