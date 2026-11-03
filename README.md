@@ -58,6 +58,8 @@ containerlab-on-ocp/
 ### **Prerequisites**
 - OpenShift cluster with admin access
 - `oc` CLI tool configured
+- `helm` CLI v3.8+ (needed to install the clabernetes chart from its OCI registry)
+- `kustomize` CLI (used to build the manifests in `containerlab/`)
 - `make` command available
 - Internet access for container images
 

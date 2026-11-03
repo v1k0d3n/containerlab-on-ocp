@@ -144,12 +144,11 @@ deploy-containerlab: ## Deploy Clabernetes only
 	@echo "   UI: https://$(HOST_UI)"
 	@oc get ns $(NS_MGR) >/dev/null 2>&1 || oc new-project $(NS_MGR) >/dev/null
 	@helm upgrade --install $(RELEASE) $(CHART) \
-		--namespace $(NS_MGR) --create-namespace $(VERSION:+--version $(VERSION)) \
+		--namespace $(NS_MGR) --create-namespace $(if $(VERSION),--version $(VERSION)) \
 		--set manager.replicaCount=1 \
 		--set manager.managerLogLevel=info \
 		--set manager.controllerLogLevel=info
-	@oc -n $(NS_MGR) create configmap clabernetes-config --from-literal=host_ui=$(HOST_UI) --dry-run=client -o yaml | oc apply -f -
-	@kustomize build containerlab | oc -n $(NS_MGR) apply -f -
+	@kustomize build containerlab | sed 's|__HOST_UI__|$(HOST_UI)|g' | oc -n $(NS_MGR) apply -f -
 	@oc -n $(NS_MGR) patch deploy/clabernetes-manager --type=json -p='[{"op":"add","path":"/spec/template/spec/securityContext","value":{"runAsNonRoot":true,"seccompProfile":{"type":"RuntimeDefault"}}},{"op":"add","path":"/spec/template/spec/volumes","value":[{"name":"webhook-certs","secret":{"secretName":"clabernetes-manager-webhook-tls"}}]},{"op":"add","path":"/spec/template/spec/containers/0/volumeMounts","value":[{"name":"webhook-certs","mountPath":"/clabernetes/certificates/webhook","readOnly":true}]}]'
 	@echo ">> Waiting for deployments to be ready..."
 	@oc -n $(NS_MGR) rollout status deploy/clabernetes-manager --timeout=$(DEPLOYMENT_TIMEOUT)m

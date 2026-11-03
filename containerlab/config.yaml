@@ -3,4 +3,6 @@ kind: ConfigMap
 metadata:
   name: clabernetes-config
 data:
-  host_ui: "ui-c9s.apps.hub.lab.ocp.run"
+  # Replaced by deploy-containerlab from HOST_UI after Kustomize renders the
+  # ConfigMap and Route replacement.
+  host_ui: "__HOST_UI__"
